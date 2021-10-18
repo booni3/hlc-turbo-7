@@ -82,6 +82,7 @@
     </a>
 
     <a href="{{ routes.root_url }}" title="{{ shop.name | escape }}" class="mobile_logo logo">
+      {% comment %} HLC - hard code logo
       {% if section.settings.logo_mobile != blank %}
         <img src="{{ section.settings.logo_mobile | img_url: '410x' }}" alt="{{ shop.name | escape }}" class="lazyload" />
       {% elsif section.settings.logo != blank %}
@@ -89,6 +90,10 @@
       {% else %}
         {{ shop.name }}
       {% endif %}
+      {% endcomment %}
+      <div class="primary_logo">
+        {% render 'hlc-logo.svg' %}
+      </div>
     </a>
 
     <div class="top-bar--right">
@@ -215,6 +220,8 @@
         {% render 'social-icons' %}
       {% endif %}
 
+      {% comment %}
+      HLC - remove extra menu
       <ul class="menu">
         {% if section.settings.phone_number != blank %}
           <li>
@@ -230,6 +237,11 @@
           {% endfor %}
         {% endif %}
       </ul>
+      {% endcomment %}
+
+      <div class="top-bar--center-menu">
+        {% include 'hlc-top-bar-reviews' %}
+      </div>
 
       <div class="top-bar--right-menu">
         <ul class="menu">
@@ -486,6 +498,7 @@
         {% capture logo %}
           <div class="header__logo {% if section.settings.logo_home == blank and section.settings.logo == blank %}logo--text{% else %}logo--image{% endif %}">
             <a href="{{ routes.root_url }}" title="{{ shop.name }}">
+              {% comment %} HLC - hardcode SVG logo
               {% if section.settings.logo_home != blank %}
                 <img src="{{ section.settings.logo_home | img_url: '410x' }}" class="secondary_logo" alt="{{ shop.name | escape }}" />
               {% endif %}
@@ -495,6 +508,10 @@
               {% else %}
                 <span class="header__logo-text">{{ shop.name }}</span>
               {% endif %}
+              {% endcomment %}
+              <div class="primary_logo">
+                {% render 'hlc-logo.svg' %}
+              </div>
             </a>
           </div>
         {% endcapture %}
@@ -515,6 +532,7 @@
           {% endif %}
         {% endcapture %}
 
+        {% comment %} HLC - REMOVE RIGHT MENU
         {% capture menu_right %}
           {% if vertical_menu %}
             {%
@@ -528,6 +546,7 @@
             %}
           {% endif %}
         {% endcapture %}
+        {% endcomment %}
 
         {% capture search %}
           {% if section.settings.search_enabled %}
@@ -565,6 +584,7 @@
             </div>
 
             {{ logo }}
+
 
             <div class="nav nav--right">
               <ul class="menu {% if section.settings.menu_alignment == 'align_left' %}align_right{% elsif section.settings.menu_alignment == 'align_right' %}align_left{% else %}{{ section.settings.menu_alignment }}{% endif %}">

@@ -1,0 +1,147 @@
+.five-col {
+  width: calc(20% - 20px)
+}
+
+.featured_content {
+  background-color: #fff
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, .3)
+}
+
+.button-link {
+  cursor: pointer;
+  color: #007a87
+}
+
+@media only screen and (max-width: 479px) {
+  .collection_title, .empty_cart, h1, h2, h3, h4, h5, h6 {
+    font-size: 140%;
+    line-height: 1.8em
+  }
+}
+
+@media only screen and (max-width: 798px) {
+  .feature_divider {
+    margin-bottom: 20px
+  }
+}
+
+
+
+
+.index .logo-list-section {
+  background-color: #f1f1f1
+}
+
+.index .logo-bar__item {
+  max-width: 110px;
+  width: 110px
+}
+
+.logo-bar__item {
+  margin-left: 15px;
+  margin-right: 15px
+}
+
+@media only screen and (min-width: 799px) {
+  .logo-bar__item {
+    margin-left: 5px;
+    margin-right: 5px
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .logo-bar__item {
+    margin-left: 25px;
+    margin-right: 25px
+  }
+}
+
+@media only screen and (max-width: 798px) {
+  .index-sections .under-menu:first-child {
+    margin-top: 0 !important
+  }
+}
+
+
+
+@media only screen and (max-width: 798px) {
+  .caption .pretext {
+    font-size: 18px
+  }
+}
+
+#shopify-section-160641433688d17cc6 {
+  background-color: #f1f1f1
+}
+
+.boost-pfs-filter-scroll-to-top, .collection-header .boost-pfs-filter-loading, .collection .boost-pfs-filter-loading {
+  display: none !important
+}
+
+.fixed {
+  top: 0;
+  left: 0
+}
+
+@media only screen and (max-width: 480px) {
+  .mobile-banner--crop-center {
+    min-height: 40vh
+  }
+}
+
+h1.product_name {
+  margin: 0
+}
+
+.ruk_rating_snippet {
+  cursor: pointer
+}
+
+.ruk_rating_snippet + .feature_divider {
+  border-bottom: 1px solid #e6e6e6;
+  width: 100%;
+  margin-top: 5px
+}
+
+#shopify-section-1606414351abe4b6d8 .featured_content {
+  background-color: #fff
+}
+
+
+
+.review-mob {
+  background-color: #000;
+  height: 34px;
+  border-bottom: 1px solid #dedede;
+  text-align: center
+}
+
+.center-loading {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center
+}
+
+@media only screen and (max-width: 798px) {
+  .center-loading {
+    margin-top: 60px
+  }
+}
+
+.mini-cart__item .line-item {
+  font-size: .8em;
+  font-weight: 400
+}
+
+.cart_warning .quote {
+  padding: 0 0 10px;
+  margin-top: -10px;
+  color: #d54d4d;
+  border-top: none;
+  font-weight: 500
+}
+

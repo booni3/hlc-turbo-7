@@ -1,0 +1,45 @@
+// Mobile First
+.banner.page-banner {
+  max-height: 300px;
+}
+
+// Desktop Only
+@media only screen and (min-width: 479px) {
+  .banner.page-banner {
+    max-height: 450px;
+  }
+
+  .page-banner .collection_header_description {
+    font-size: 1.2em;
+    max-width: 100%
+  }
+
+  .banner .caption-content {
+    padding-top: 80px;
+    max-width: 80%;
+  }
+}
+
+// General
+.page-banner .caption-content .subtitle {
+  font-family: Raleway, sans-serif;
+  text-shadow: 0 0 3px rgba(0, 0, 0, .4);
+  text-transform: none;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.mobile-only.collection_header_description {
+  display: none;
+  padding-bottom: 30px;
+}
+
+.index .banner .headline,
+.index .banner p
+{
+  text-shadow: 0 0 25px rgba(0, 0, 0, .8)
+}
+
+.index .banner p > a {
+  color: #b8fbff
+}

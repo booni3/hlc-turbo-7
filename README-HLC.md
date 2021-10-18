@@ -30,3 +30,6 @@ To view the theme run serve. This will upload a development theme and return opt
 shopify theme serve
 ```
 
+# References
+[Liquid Docs](https://shopify.dev/api/liquid)
+[Liquid Cheat Sheet](https://www.shopify.com/partners/shopify-cheat-sheet)

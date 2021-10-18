@@ -14,24 +14,25 @@
     "newsletter_popup_color": "#363636",
     "newsletter_section_color": "#000000",
     "top_bar_color": "#f4f4f4",
-    "top_bar_color_hover": "#03a196",
-    "nav_color": "#d9d9d9",
-    "nav_color_home": "#d9d9d9",
-    "nav_color_hover": "#ffffff",
+    "top_bar_color_hover": "#b8c6c6",
+    "nav_color": "#ffffff",
+    "nav_color_home": "#ffffff",
+    "nav_color_hover": "#b8c6c6",
     "link_color": "#03a196",
     "link_hover_color": "#03857c",
     "sidebar_nav_color": "#363636",
     "sidebar_nav_color_hover": "#03a196",
     "sub_footer_link_color": "#7f8c8d",
     "sub_footer_link_color_hover": "#ffffff",
-    "btn_color": "#03a196",
-    "btn_hover_color": "#04736b",
+    "btn_color": "#ff5a5f",
+    "btn_hover_color": "#ff5a5f",
     "btn_text_color": "#ffffff",
-    "button_style": "square",
-    "read_more_style": "button",
+    "button_style": "pill_shaped",
+    "read_more_style": "link",
     "banner_button_color": "#ffffff",
     "banner_color": "#ffffff",
     "banner_background_color": "#1e1e1e",
+    "swatch_style": "rounded",
     "table_styles_enabled": true,
     "slideshow_arrow_size": "light",
     "arrow_color": "#333333",
@@ -68,66 +69,74 @@
     "newsletter_section_background_color": "#cccccc",
     "password_page_text_color": "#ffffff",
     "password_page_background_color": "#000000",
-    "logo__font": "oswald_n4",
+    "logo__font": "unica_one_n4",
     "logo_font_style": "uppercase",
     "logo_font_size": 20,
     "top_bar_font_size": 12,
     "top_bar_letter_spacing": 1,
-    "nav__font": "oswald_n4",
-    "nav_font_style": "uppercase",
-    "nav_font_size": 14,
+    "nav__font": "raleway_n4",
+    "nav_font_style": "none",
+    "nav_font_size": 15,
     "nav_letter_spacing": 1,
     "nav_shadow": false,
-    "button_weight": "normal",
+    "button_weight": "bold",
     "button_font_style": "uppercase",
-    "button_font_size": 14,
-    "headline__font": "oswald_n3",
+    "button_font_size": 17,
+    "headline__font": "unica_one_n4",
     "headline_font_style": "uppercase",
-    "headline_font_size": 30,
-    "headline_letter_spacing": 2,
-    "slideshow_headline__font": "oswald_n3",
+    "headline_font_size": 29,
+    "headline_letter_spacing": 4,
+    "slideshow_headline__font": "unica_one_n4",
     "slideshow_headline_font_style": "uppercase",
-    "slideshow_headline_size": 56,
-    "slideshow_subtitle__font": "roboto_n3",
+    "slideshow_headline_size": 54,
+    "slideshow_subtitle__font": "raleway_n4",
     "slideshow_subtitle_font_style": "uppercase",
     "slideshow_subtitle_size": 18,
     "slideshow_subtitle_letter_spacing": 1,
     "slideshow_shadow": false,
-    "regular__font": "roboto_n4",
+    "regular__font": "lato_n3",
     "regular_font_style": "none",
-    "regular_font_size": 15,
+    "regular_font_size": 16,
+    "footer_logo_font_size": 14,
     "footer_font_size": 13,
+    "mega_menu_1": true,
+    "mega_menu_2": true,
+    "mega_menu_3": true,
+    "mega_menu_4": true,
+    "mega_menu_5": true,
     "search_option": "product",
     "product_form_style": "radio",
     "display_product_quantity": true,
+    "limit_quantity": true,
     "display_inventory_left": false,
     "notify_me_form": true,
     "enable_shopify_review_comments": false,
     "enable_shopify_collection_badges": false,
     "display_vendor": false,
     "collection_swatches": false,
-    "sale_banner_enabled": true,
+    "sale_banner_enabled": false,
     "thumbnail_hover_enabled": true,
     "mobile_products_per_row": "2",
-    "pagination_type": "load_more",
+    "pagination_type": "infinite_scroll",
+    "display_price": true,
     "free_price_text": "Free",
-    "collection_secondary_image": false,
-    "align_height": false,
-    "collection_height": 200,
-    "quick_shop_enabled": true,
+    "collection_secondary_image": true,
+    "align_height": true,
+    "collection_height": 280,
+    "quick_shop_enabled": false,
     "cart_action": "ajax",
     "display_tos_checkbox": false,
     "tos_page": "",
     "go_to_checkout": true,
     "display_special_instructions": false,
     "cart_message": "",
-    "show_shipping_calculator": false,
-    "shipping_calculator_default_country": "United States",
+    "show_shipping_calculator": true,
+    "shipping_calculator_default_country": "United Kingdom",
     "currency_format": "money_format",
-    "supported_currencies": "USD CAD AUD GBP EUR JPY",
-    "default_currency": "USD",
+    "supported_currencies": "GBP EUR USD",
+    "default_currency": "GBP",
     "mailchimp_link": "",
-    "secondary_newsletter_banner": true,
+    "secondary_newsletter_banner": false,
     "newsletter_popup": false,
     "newsletter_popup_form": true,
     "display_first_name": false,
@@ -140,38 +149,47 @@
     "newsletter_popup_text_align": "center",
     "newsletter_popup_seconds": 0,
     "newsletter_popup_days": "14",
-    "twitter_link": "",
-    "facebook_link": "",
+    "twitter_link": "https:\/\/twitter.com\/thehairpinlegco?lang=en",
+    "facebook_link": "https:\/\/www.facebook.com\/thehairpinlegco",
     "youtube_link": "",
     "vimeo_link": "",
-    "pinterest_link": "",
+    "pinterest_link": "https:\/\/www.pinterest.co.uk\/thehairpinlegco\/",
     "tumblr_link": "",
-    "instagram_link": "",
+    "instagram_link": "https:\/\/www.instagram.com\/thehairpinlegco",
     "snapchat_link": "",
     "houzz_link": "",
     "linkedin_link": "",
-    "email_link": "",
-    "disqus_enabled": false,
-    "disqus_shortname": "",
+    "email_link": "hello@thehairpinlegcompany.co.uk",
+    "disqus_enabled": true,
+    "disqus_shortname": "the-hairpin-leg-co-uk",
+    "checkout_body_background_image": "shopify:\/\/shop_images\/banner.jpg",
+    "checkout_sidebar_background_image": "shopify:\/\/shop_images\/white_long_c8c31566-0f41-49ca-b12b-425c30a0b4f9.png",
+    "checkout_heading_font": "Raleway",
+    "checkout_body_font": "Lato",
+    "checkout_accent_color": "#007a87",
+    "checkout_button_color": "#ff5a5f",
+    "checkout_error_color": "#ff0000",
     "sections": {
       "header": {
         "type": "header",
         "settings": {
-          "promo_text": "",
+          "promo_text": "<p>...<\/p>",
           "social_icons_header": true,
           "phone_number": "",
           "top_bar_menu": "",
           "show_cart": true,
           "cart_icon": "cart",
-          "logo": "",
-          "logo_home": "",
-          "logo_mobile": "",
-          "main_linklist": "main-menu",
-          "main_linklist2": "footer",
+          "show_locale_selector": false,
+          "show_currency_selector": false,
+          "logo_display_width": 200,
+          "main_linklist": "test-main-menu-desktop",
+          "main_linklist2": "mobile-menu",
+          "vertical_menu": false,
+          "dropdown_click": false,
           "search_enabled": true,
           "fixed_header": true,
-          "logo_position": "center",
-          "logo_alignment": "center",
+          "logo_position": "left",
+          "logo_alignment": "left",
           "menu_position": "inline",
           "menu_alignment": "align_left"
         }
@@ -182,7 +200,6 @@
           "footer-0": {
             "type": "logo",
             "settings": {
-              "image": "",
               "text_align": "left",
               "social_icons_footer": false
             }
@@ -219,9 +236,577 @@
         "settings": {
           "copyright_text": "",
           "display_designed_by": true,
-          "display_payment_methods": true
+          "display_payment_methods": true,
+          "show_locale_selector": true,
+          "show_currency_selector": true
+        }
+      },
+      "mega-menu-1": {
+        "type": "mega-menu-1",
+        "blocks": {
+          "mega-menu-1-0": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "mega-legs-by-style",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-1-1": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "mega-legs-by-function",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-1-2": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "guide",
+              "menu_1_link": "",
+              "menu_2": "accessories",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-1-3": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "<p>IMAGE HERE<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-1-4": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Add up to five columns<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          }
+        },
+        "block_order": [
+          "mega-menu-1-0",
+          "mega-menu-1-1",
+          "mega-menu-1-2",
+          "mega-menu-1-3",
+          "mega-menu-1-4"
+        ],
+        "settings": {
+          "parent": "legs"
+        }
+      },
+      "mega-menu-2": {
+        "type": "mega-menu-2",
+        "blocks": {
+          "mega-menu-2-0": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "hardware",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-2-1": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>A column with no settings can be used as a spacer<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-2-2": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-2-3": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Link to your collections, sales and even external links<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-2-4": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Add up to five columns<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          }
+        },
+        "block_order": [
+          "mega-menu-2-0",
+          "mega-menu-2-1",
+          "mega-menu-2-2",
+          "mega-menu-2-3",
+          "mega-menu-2-4"
+        ],
+        "settings": {
+          "parent": "hardware"
+        }
+      },
+      "mega-menu-3": {
+        "type": "mega-menu-3",
+        "blocks": {
+          "mega-menu-3-0": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "tops",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-3-1": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>A column with no settings can be used as a spacer<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-3-2": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-3-3": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Link to your collections, sales and even external links<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-3-4": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Add up to five columns<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          }
+        },
+        "block_order": [
+          "mega-menu-3-0",
+          "mega-menu-3-1",
+          "mega-menu-3-2",
+          "mega-menu-3-3",
+          "mega-menu-3-4"
+        ],
+        "settings": {
+          "parent": "tops"
+        }
+      },
+      "mega-menu-4": {
+        "type": "mega-menu-4",
+        "blocks": {
+          "mega-menu-4-0": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "ready-made",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-4-1": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>A column with no settings can be used as a spacer<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-4-2": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-4-3": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Link to your collections, sales and even external links<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-4-4": {
+            "type": "column",
+            "disabled": true,
+            "settings": {
+              "richtext_top": "<p>Add up to five columns<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          }
+        },
+        "block_order": [
+          "mega-menu-4-0",
+          "mega-menu-4-1",
+          "mega-menu-4-2",
+          "mega-menu-4-3",
+          "mega-menu-4-4"
+        ],
+        "settings": {
+          "parent": "ready made"
+        }
+      },
+      "mega-menu-5": {
+        "type": "mega-menu-5",
+        "blocks": {
+          "mega-menu-5-0": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "<p>Add description, images, menus and links to your mega menu<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-5-1": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "<p>A column with no settings can be used as a spacer<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-5-2": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-5-3": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "<p>Link to your collections, sales and even external links<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          },
+          "mega-menu-5-4": {
+            "type": "column",
+            "settings": {
+              "richtext_top": "<p>Add up to five columns<\/p>",
+              "image_caption_top": "",
+              "image_link_top": "",
+              "menu_1": "",
+              "menu_1_link": "",
+              "menu_2": "",
+              "menu_2_link": "",
+              "menu_3": "",
+              "menu_3_link": "",
+              "menu_4": "",
+              "menu_4_link": "",
+              "image_caption_bottom": "",
+              "image_link_bottom": "",
+              "richtext_bottom": ""
+            }
+          }
+        },
+        "block_order": [
+          "mega-menu-5-0",
+          "mega-menu-5-1",
+          "mega-menu-5-2",
+          "mega-menu-5-3",
+          "mega-menu-5-4"
+        ],
+        "settings": {
+          "parent": "about"
         }
       }
-    }
+    },
+    "content_for_index": [
+
+    ]
   }
 }

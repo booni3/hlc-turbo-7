@@ -1,0 +1,27 @@
+<div x-data="{ count: 0, rating: 0, text: ''}"
+     x-init="
+        fetch('https://app.profilestudio.xyz/shopify/stock/proxy/reviews')
+          .then(res => res.json())
+          .then(data => {
+              if(data.rating){
+                text = (Math.round(data.rating * 10) / 10) + ' (' + data.count + ')';
+                $dispatch('reviews-text', text);
+              }
+          });
+     "
+     x-on:click="window.location='/pages/customer-reviews'"
+     class="top-bar-review"
+     style="cursor: pointer"
+>
+  <div class="reviews-logo">
+    {% include 'reviews-io-svg' %}
+  </div>
+  <div class="stars">
+    {% include 'star-svg' %}
+    {% include 'star-svg' %}
+    {% include 'star-svg' %}
+    {% include 'star-svg' %}
+    {% include 'star-svg' %}
+  </div>
+  <div x-text="text"></div>
+</div>

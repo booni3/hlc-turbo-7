@@ -1,0 +1,216 @@
+.primary_logo {
+  color: #fff;
+  display: flex
+}
+
+.feature_image .dropdown, .feature_image .main-nav {
+  background: rgba(34, 35, 37, .6) !important
+}
+
+.dropdown, .main-nav {
+  background-color: rgba(90, 93, 97, .95) !important
+}
+
+.main-nav .nav li {
+  padding-left: 10px;
+  padding-right: 10px
+}
+
+.search-container {
+  max-width: unset;
+  padding-left: 5px;
+  width: 27%
+}
+
+.logo-position--center.search-enabled--true .nav--right {
+  width: 18%
+}
+
+//@media only screen and (max-width: 798px) and (max-width: 798px) {
+//  .promo-banner--show.mobile_nav-fixed--false #pagecontent,
+//  .promo-banner--show.mobile_nav-fixed--true #pagecontent
+//  {
+//    padding-bottom: 85px
+//  }
+//}
+
+@media only screen and (max-width: 798px) {
+  .top-bar,
+  .top-bar .top-bar--left,
+  .top-bar .top-bar--right
+  {
+    height: 55px !important;
+    background-color: #5a5d61 !important
+  }
+
+  .mini_cart, .nav a.mini_cart {
+    height: 55px
+  }
+
+  .cart_content {
+    top: 55px
+  }
+
+  //.promo_banner-show.mobile_nav-fixed--false #pagecontent, .promo_banner-show.mobile_nav-fixed--true #pagecontent {
+  //  padding-bottom: 85px
+  //}
+
+  //.mobile_nav-fixed--false .page_banner, .mobile_nav-fixed--true .page_banner {
+  //  margin-top: 55px
+  //}
+  //
+  //.promo-banner--show.mobile_nav-fixed--false .page-banner, .promo-banner--show.mobile_nav-fixed--true .page-banner {
+  //  margin-top: 85px
+  //}
+
+  #header .mobile_nav.dropdown_link span.menu_title {
+    display: none
+  }
+}
+
+.top-bar .icon svg {
+  height: 40px;
+  line-height: 40px;
+  padding: 12px 0
+}
+
+#mobile_menu .icon svg {
+  height: 20px;
+  line-height: 20px;
+  padding: 3px 0 0;
+  min-width: 20px;
+  text-align: left
+}
+
+#mobile_menu a.icon {
+  padding-top: 12px;
+  padding-bottom: 12px
+}
+
+.promo-banner {
+  display: none
+}
+
+.promo-banner__content-mobile {
+  display: none !important
+}
+
+.promo-banner .promo-banner__content {
+  font-size: 1.15em;
+  letter-spacing: 4px
+}
+
+@media only screen and (max-width: 798px) {
+  .promo-banner .promo-banner__content {
+    font-size: 13px;
+    letter-spacing: 3px
+  }
+
+  .promo-banner__content-desktop {
+    display: none !important
+  }
+
+  .promo-banner__content-mobile {
+    display: block !important
+  }
+}
+
+.top-bar {
+  padding: 0
+}
+
+.top-bar .top-bar--right-menu {
+  width: 30%;
+  text-align: right
+}
+
+.top-bar .social_icons {
+  width: 30%;
+  padding-left: 10px
+}
+
+.top-bar-review {
+  display: inline-flex;
+  color: #f4f4f4;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: none;
+  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: 0
+}
+
+.reviews-logo svg {
+  height: 15px;
+  vertical-align: -4px
+}
+
+.top-bar--center-menu {
+  line-height: 35px
+}
+
+.top-bar-review .stars {
+  padding: 2px 10px 0
+}
+
+.top-bar-review .stars svg {
+  height: 12px;
+  color: #feca2d
+}
+
+.mobile_nav-fixed--true .dropdown {
+  background-color: #5a5d61 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1)
+}
+
+#mobile_menu li > a, #mobile_menu li > span {
+  font-size: 1.2em
+}
+
+#mobile_menu li > a > span {
+  font-size: 1em;
+  padding-top: 0;
+  padding-bottom: 0
+}
+
+#mobile_menu li a span.icon-down-arrow {
+  padding: 0 0 0 110px !important
+}
+
+.mobile_nav-fixed--true span.right.icon-down-arrow {
+  padding: 0 !important;
+  font-size: 1em !important
+}
+
+#mobile_menu .accounts {
+  border-top: 1px solid #b3b3b3;
+  padding-top: 20px !important;
+  margin-top: 10px
+}
+
+.blog .feature_image .main-nav,
+.collection-filtered .feature_image .main-nav,
+.collection .feature_image .main-nav,
+.page-banner .feature_image .main-nav
+{
+  background: transparent !important
+}
+
+// Increase height of top bar for mobile
+@media only screen and (max-width: 798px) {
+  .mobile_nav-fixed--true .primary_logo {
+    max-width: 150px;
+    max-height: 35px;
+    height: 35px
+  }
+
+  .mobile_nav-fixed--true.promo-banner--show #pagecontent {
+    margin-top: 85px;
+  }
+}

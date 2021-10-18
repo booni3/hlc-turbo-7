@@ -19,6 +19,19 @@
 {%- assign display_collection_title = section.settings.display_collection_title -%}
 {%- assign banner_title = collection.title -%}
 
+{%  comment %}HLC - Multi part descirption{% endcomment  %}
+{%  assign description_array = collection.description | split: '<!-- split -->' %}
+{%  if description_array.size > 0 %}
+  {% assign banner_subheading = description_array |  first %}
+{% endif %}
+{%  if description_array.size >= 2 %}
+  {% assign description_top = description_array[1] %}
+{% endif %}
+{%  if description_array.size == 3 %}
+  {% assign description_bottom = description_array | last %}
+{% endif %}
+
+
 {% if section.settings.featured_collection_image %}
   {%
     render 'template-banner',
@@ -28,6 +41,7 @@
     mobile_crop: mobile_crop,
     wide_display: wide_display,
     banner_title: banner_title,
+    banner_subheading: banner_subheading,
     show_caption: display_collection_title
   %}
 {% endif %}
@@ -169,11 +183,11 @@
       {% render 'sidebar' %}
 
       <div class="has-sidebar-option sidebar-enabled--{{ sidebar }}">
-        {% if collection.description != blank %}
+        {% if description_top %}
           <div class="container">
             <div class="one-whole column">
               <div class="collection_description">
-                {{ collection.description }}
+                {{ description_top }}
               </div>
             </div>
           </div>
@@ -207,6 +221,25 @@
       </div>
     </div>
   {% endpaginate %}
+
+    {% comment %}HLC - Add Collection detail{% endcomment %}
+    {% unless shop.permanent_domain == 'the-hairpin-leg-co-trade.myshopify.com' %}
+      {% if collection.description != blank %}
+        {% if description_array.size == 3 %}
+          <!-- Collection Detail -->
+          <div class="sixteen columns">
+            <div class="feature_divider collection_detail_divider"></div>
+          </div>
+
+          <div class="sixteen columns">
+            <div class="section clearfix">
+              {{ description_array | last }}
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endunless %}
+
   </div>
 </section>
 

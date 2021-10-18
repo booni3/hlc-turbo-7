@@ -1,88 +1,168 @@
-`use strict`;
+// Gulp and Gulp Plugins
+const gulp = require("gulp");
+const fs = require("fs");
+const t2 = require("through2");
+const aliases = require("gulp-style-aliases");
+const concat = require("gulp-concat");
+const postcss = require("gulp-postcss");
+var sass = require('gulp-sass')(require('node-sass'));
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const log = require("fancy-log");
+const sourcemaps = require("gulp-sourcemaps");
+const uglify = require("gulp-uglify");
+const rollup = require("gulp-rollup-lightweight");
+const babel = require("rollup-plugin-babel");
+const noderesolve = require("rollup-plugin-node-resolve");
+const commonjs = require("rollup-plugin-commonjs");
+const source = require("vinyl-source-stream");
+const buffer = require("vinyl-buffer");
+let cssPlugins = [autoprefixer(), cssnano()];
 
-const gulp = require(`gulp`);
-const babel = require(`gulp-babel`);
-const autoprefixer = require(`gulp-autoprefixer`);
-const changed = require(`gulp-changed`);
-const cleanCss = require(`gulp-clean-css`);
-const concat = require(`gulp-concat`);
-const rename = require(`gulp-rename`);
-const replace = require(`gulp-replace`);
-const sass = require(`gulp-sass`)((require('node-sass')));
-const uglify = require(`gulp-uglify`);
-
-/**
- * Asset paths.
- */
-const srcSCSS = `scss/**/*.scss`;
-const srcJS = `js/*.js`;
-const assetsDir = `../assets/`;
-
-/**
- * SCSS task
- */
-gulp.task(`scss`, () => {
-    return gulp.src(`scss/*.scss`)
-        .pipe(sass({ outputStyle: `expanded` }).on(`error`, sass.logError))
-        .pipe(autoprefixer({ cascade : false }))
-        .pipe(rename((path) => {
-            path.extname = `.min.css`;
-        }))
-        .pipe(replace(`"{{`, "{{"))
-        .pipe(replace(`}}"`, "}}"))
-        .pipe(cleanCss())
-        .pipe(gulp.dest(assetsDir));
+const themeDirectory = "./../";
+const scriptsDirectory = "./js/";
+const stylesDirectory = "./scss/";
+const scriptsEntryFiles = fs.readdirSync(scriptsDirectory).filter((file) => {
+    if (file.indexOf(".") > -1) {
+        return true;
+    }
 });
-
-/**
- * JS task
- *
- * Note: use npm to install libraries and add them below, like the babel-polyfill example
- */
-const jsFiles = [
-    `./node_modules/babel-polyfill/dist/polyfill.js`,
-    srcJS,
-];
-
-gulp.task(`js`, () => {
-    return gulp.src(jsFiles)
-        .pipe(babel({
-            presets: [`@babel/preset-env`]
-        }))
-        .pipe(concat(`hlc-main.min.js`))
-        .pipe(uglify())
-        .pipe(gulp.dest(assetsDir));
+const stylesEntryFiles = fs.readdirSync(stylesDirectory).filter((file) => {
+    if (file.indexOf(".") > -1) {
+        return true;
+    }
 });
+const stylesBuildTask = (fileName) => {
+    log("~~~~~~~~~~~~~~~~");
+    log("Styles Compiling...");
+    log("Compiling: " + fileName);
+    return gulp
+        .src(stylesDirectory + fileName)
+        .pipe(sourcemaps.init())
+        .pipe(
+            aliases({
+                "@vendor": "./node_modules/",
+            })
+        )
+        .pipe(sass().on("error", sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(postcss(cssPlugins))
+        .pipe(concat(fileName.replace(".scss", "") + ".min.css"))
+        .pipe(gulp.dest(themeDirectory + "assets/"))
+        .pipe(
+            t2.obj((chunk, enc, callback) => {
+                let date = new Date();
+                chunk.stat.atime = date;
+                chunk.stat.mtime = date;
+                callback(null, chunk);
+            })
+        )
+        .on("end", () => {
+            log("+++++++++++++++");
+            log(fileName + " built!");
+        });
+};
+const jsBuildTask = function (fileName) {
+    log("~~~~~~~~~~~~~~~~");
+    log("JS Compiling...");
+    log("Compiling: " + fileName);
+    return rollup({
+        input: scriptsDirectory + fileName,
+        external: ["$", "jquery", "jQuery"],
+        output: {
+            globals: { jquery: "$", jQuery: "$", moment: "moment" },
+            format: "umd",
+            sourcemap: "inline",
+        },
+        plugins: [
+            babel({ runtimeHelpers: true }),
+            noderesolve({
+                mainFields: ["module", "main"],
+            }),
+            commonjs(),
+        ],
+        onwarn: (warning) => {
+            //   This avoids a weird issue with some of the rollup plugins just spamming warnings
+            return true;
+        },
+    })
+        .on("error", function (err) {
+            console.log(err.toString());
 
-/**
- * Images task
- */
-gulp.task(`images`, () => {
-    return gulp.src(`images/**`)
-        .pipe(changed(assetsDir)) // ignore unchanged files
-        .pipe(gulp.dest(assetsDir))
+            this.emit("end");
+        })
+        .pipe(source(fileName.replace(".js", "") + ".min.js"))
+        .pipe(buffer())
+        .pipe(uglify({ mangle: { reserved: ["jQuery", "$"], keep_fnames: true } }))
+        .pipe(gulp.dest(themeDirectory + "assets/"))
+        .pipe(
+            t2.obj((chunk, enc, callback) => {
+                let date = new Date();
+                chunk.stat.atime = date;
+                chunk.stat.mtime = date;
+                callback(null, chunk);
+            })
+        )
+        .on("end", () => {
+            log("~~~~~~~~~~~~~~~~");
+            log(fileName + " built!");
+        });
+};
+gulp.task("css", async function () {
+    log("+++++++++++++++");
+    log("CSS Compiling...");
+    log("Compiling: hlc-main.scss");
+    return gulp
+        .src(stylesDirectory + "hlc-main.scss")
+        .pipe(sourcemaps.init())
+        .pipe(
+            aliases({
+                "@vendor": "./node_modules/",
+            })
+        )
+        .pipe(sass().on("error", sass.logError))
+        .pipe(sourcemaps.write())
+        .pipe(postcss(cssPlugins))
+        .pipe(concat("hlc-main.min.css"))
+        .pipe(
+            t2.obj((chunk, enc, callback) => {
+                let date = new Date();
+                chunk.stat.atime = date;
+                chunk.stat.mtime = date;
+                callback(null, chunk);
+                log(chunk.stat.mtime);
+            })
+        )
+        .pipe(gulp.dest(themeDirectory + "assets/"))
+        .on("end", () => {
+            log("+++++++++++++++");
+            log("main.css built!");
+        });
 });
-
-/**
- * Fonts task
- */
-gulp.task(`fonts`, () => {
-    return gulp.src(`fonts/**`)
-        .pipe(changed(assetsDir)) // ignore unchanged files
-        .pipe(gulp.dest(assetsDir))
+gulp.task("css-modules", async function () {
+    return stylesEntryFiles.forEach((entryFile) => {
+        if (
+            entryFile.includes(".css") ||
+            (entryFile.includes(".scss") && entryFile !== "main.scss")
+        ) {
+            stylesBuildTask(entryFile);
+        }
+    });
 });
-
-/**
- * Watch task
- */
-gulp.task(`watch`, () => {
-    gulp.watch(srcSCSS, gulp.series(`scss`));
-    gulp.watch(srcJS, gulp.series(`js`));
-    gulp.watch(`images/*.{jpg,jpeg,png,gif,svg}`, gulp.series(`images`));
-    gulp.watch(`fonts/*.{eot,svg,ttf,woff,woff2}`, gulp.series(`fonts`));
+gulp.task("javascript", async function () {
+    return scriptsEntryFiles.forEach((entryFile) => {
+        if (entryFile.includes(".js")) {
+            jsBuildTask(entryFile);
+        }
+    });
 });
-
-/**
- * Default task
- */
-gulp.task(`default`, gulp.series(`scss`, `js`, `images`, `fonts`));
+gulp.task("test", function () {
+    console.log("test test test");
+    return true;
+});
+gulp.task("build", gulp.parallel("css", "css-modules", "javascript"));
+gulp.task("default", () => {
+    gulp.watch(scriptsDirectory + "**/*.js", gulp.parallel("javascript"));
+    gulp.watch("./scss/**/*.scss", gulp.parallel("css"));
+    gulp.watch("./scss/**/*.scss", gulp.parallel("css-modules"));
+});

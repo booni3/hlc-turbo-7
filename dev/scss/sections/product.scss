@@ -1,0 +1,153 @@
+.product .current_price,
+.product .current_price .money {
+  font-weight: 400;
+  color: #b12704
+}
+
+.product .modal_price {
+  margin: 0;
+  padding: 0
+}
+
+@media only screen and (max-width: 798px) {
+  .modal .modal_price, .modal_price {
+    font-size: 1.4em
+  }
+}
+
+.was_price {
+  font-size: 70%;
+  vertical-align: 10px;
+  line-height: 0;
+  margin-left: 2px
+}
+
+.product-info__caption span.current_price, .product-info__caption span.price, .was_price {
+  color: #9c9c9c
+}
+
+.product-info__caption span.money {
+  color: #292929 !important
+}
+
+.product-info__caption span.was_price {
+  display: none
+}
+
+.sold_out {
+  opacity: 1;
+  font-weight: 600
+}
+
+.product {
+  font-weight: 400
+}
+
+.delivery-counter, .price_info {
+  margin: 10px 0
+}
+
+.price_info {
+  font-size: 1em
+}
+
+.delivery-counter .free_delivery_text {
+  color: green;
+  font-weight: 700
+}
+
+.delivery-counter .free_delivery_subtitle, .delivery-counter .order_before_text {
+  font-size: .9em
+}
+
+.flickity-prev-next-button {
+  background: transparent
+}
+
+.flickity-prev-next-button .arrow {
+  fill: #000;
+  opacity: 1
+}
+
+@media only screen and (min-width: 798px) {
+  .product-template .ugc {
+    padding: 50px 10px 0
+  }
+}
+
+.snptwdgt__headng {
+  border-bottom: 1px solid;
+  border-color: #aaa;
+  padding-bottom: 20px
+}
+
+.product .description ul {
+  padding-left: 15px;
+  list-style: none
+}
+
+.product .description ul li:before {
+  content: "\2022";
+  color: #c7c7c7;
+  font-weight: 700;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em
+}
+
+#product-images {
+  position: -webkit-sticky;
+  position: sticky
+}
+
+.shopify-product-form .single-option-selector {
+  font-weight: 600;
+  font-size: 13px;
+  font-family: Lato, sans-serif;
+  color: #333;
+  text-transform: uppercase;
+  border: 1px solid #000
+}
+
+.swatch_options input:checked + .swatch-element {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(164, 202, 254, .45);
+  border-color: #a4cafe
+}
+
+.swatch_options input:checked + .swatch-element.soldout {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(248, 180, 180, .45);
+  border-color: #f8b4b4
+}
+
+#unavailable-note {
+  display: none;
+  background: #f3f3f3;
+  border-radius: 4px;
+  padding: 7px 10px;
+  margin: 10px 0
+}
+
+.notify_form .notify_me_button {
+  width: 100%;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #333;
+  transition: background-color .2s cubic-bezier(.55, .09, .68, .53), color .3s linear, border .2s cubic-bezier(.55, .09, .68, .53)
+}
+
+.notify_form .notify_me_button:hover {
+  color: #f4f4f4;
+  border-color: #333;
+  background-color: #333
+}
+
+.notify_form .error-text {
+  color: red;
+  font-size: .9em;
+  text-align: center;
+  padding-top: 5px
+}
+
+

@@ -56,6 +56,10 @@
     <!-- Stylesheets for Turbo -->
     {{ 'styles.css' | asset_url | stylesheet_tag }}
 
+    <!-- HLC Custom -->
+    {{ 'hlc-main.min.css' | asset_url | stylesheet_tag }}
+    <script defer src="{{ 'hlc-main.min.js' | asset_url }}"></script>
+
     <script>
       window.lazySizesConfig = window.lazySizesConfig || {};
 
