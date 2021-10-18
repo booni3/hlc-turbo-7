@@ -49,7 +49,7 @@ gulp.task(`js`, () => {
         .pipe(babel({
             presets: [`@babel/preset-env`]
         }))
-        .pipe(concat(`hlc-main.js`))
+        .pipe(concat(`hlc-main.min.js`))
         .pipe(uglify())
         .pipe(gulp.dest(assetsDir));
 });
