@@ -160,6 +160,18 @@
           {% endif %}
         {% endif %}
 
+        {% comment %}HLC - Add Smile Link To Mobile Menu{% endcomment %}
+        {% if shop.permanent_domain == 'the-hairpin-leg-co.myshopify.com' %}
+          <li>
+            <a href="#smile-home" class="icon">
+              <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18">
+                <path d="M1.3 3.8a4.5 4.5 0 017.4-1.5L10 3.6l1.3-1.3a4.5 4.5 0 116.4 6.4L10 16.4 2.3 8.7a4.5 4.5 0 01-1-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Your Pins</span>
+            </a>
+          </li>
+        {% endif %}
+
         {% if locale_selector or currency_selector or settings.show_multiple_currencies == true %}
           {%
             render 'localization-switcher-mobile',
@@ -261,6 +273,18 @@
           {% if shop.customer_accounts_enabled %}
             <li>
               <a href="{{ routes.account_url }}" class="icon-user" title="{{ 'layout.customer.my_account' | t }} {% if customer %}({{ customer.email }}){% endif %}"> <span>{% if customer %}{{ 'layout.customer.my_account' | t }}{% else %}{{ 'layout.customer.log_in' | t }}{% endif %}</span></a>
+            </li>
+          {% endif %}
+
+          {% comment %}HLC - Add Smile Link To Desktop{% endcomment %}
+          {% if shop.permanent_domain == 'the-hairpin-leg-co.myshopify.com' %}
+            <li>
+              <a href="#smile-home" class="icon" title="Rewards">
+                <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18">
+                  <path d="M1.3 3.8a4.5 4.5 0 017.4-1.5L10 3.6l1.3-1.3a4.5 4.5 0 116.4 6.4L10 16.4 2.3 8.7a4.5 4.5 0 01-1-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Pins</span>
+              </a>
             </li>
           {% endif %}
         </ul>
