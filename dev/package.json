@@ -52,6 +52,7 @@
     "start": "gulp build && gulp"
   },
   "dependencies": {
+    "@alpinejs/persist": "^3.4.2",
     "alpinejs": "^3.4.2",
     "cypress-intellij-reporter": "0.0.4"
   }

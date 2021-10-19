@@ -1,0 +1,57 @@
+{% comment %}
+To speed things up, we first load an image of the beacon.
+Once this is clicked, a cookie is set and the page is refreshed to load the actual widget
+Bit of a hack for google... maybe?
+{% endcomment %}
+
+<div
+        x-data="{ showBeacon: $persist(false), showBeaconClicked: $persist(false)}"
+        x-init="if(showBeaconClicked) { showBeacon=true; showBeaconClicked=false; $nextTick(() => { window.Beacon('open') }) }"
+>
+    {% comment %} Beacon Script {% endcomment %}
+    <template x-if="showBeacon">
+        <script type="text/javascript">!function (e, t, n) {
+            function a() {
+              var e = t.getElementsByTagName("script")[0], n = t.createElement("script");
+              n.type = "text/javascript", n.async = !0, n.src = "https://beacon-v2.helpscout.net", e.parentNode.insertBefore(n, e)
+            }
+
+            if (e.Beacon = n = function (t, n, a) {
+              e.Beacon.readyQueue.push({method: t, options: n, data: a})
+            }, n.readyQueue = [], "complete" === t.readyState) return a();
+            e.attachEvent ? e.attachEvent("onload", a) : e.addEventListener("load", a, !1)
+          }(window, document, window.Beacon || function () {
+          });</script>
+    </template>
+
+    {% comment %}Beacon Init{% endcomment %}
+    <template x-if="showBeacon">
+        <script type="text/javascript">window.Beacon('init', '{{ id }}');</script>
+    </template>
+
+    {% comment %}Customer Details{% endcomment %}
+    <template x-if="showBeacon">
+        <script>{% if customer %}window.Beacon('identify', {name: '{{ customer.name }}', email: '{{ customer.email }}', signature: '{{ customer.email | hmac_sha256: secret }}'});{% endif %}</script>
+    </template>
+
+    {% comment %} Styled button, no scripts {% endcomment %}
+    <template x-if="! showBeacon">
+        <div class="hlc-beacon hsds-beacon">
+            <div class="Beacon">
+                <div class="sc-fznyAO fXeFIX BeaconFabButtonFrame" style="border-radius: 60px; height: 60px; position: fixed; transform: scale(1); width: 60px; z-index: 1149;">
+                    <div id="beacon-container-body" data-new-gr-c-s-check-loaded="14.1034.0" data-gr-ext-installed="">
+                        <div id="beacon-container">
+                            <div class="frame-content">
+                                <button x-on:click="showBeaconClicked=true; location.reload();" aria-label="Open Beacon popover" aria-expanded="false" aria-controls="HSBeaconContainerFrame" class="sc-Axmtr lgQwLS">
+                                    <span class="sc-fzoLsD bIvNUR c-FabButton__icon--icon">
+                                        <svg width="24" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M20.347 20.871l-.003-.05c0 .017.001.034.003.05zm-.243-4.278a2 2 0 0 1 .513-1.455c1.11-1.226 1.383-2.212 1.383-4.74C22 5.782 18.046 2 13.125 2h-2.25C5.954 2 2 5.78 2 10.399c0 4.675 4.01 8.626 8.875 8.626h2.25c.834 0 1.606-.207 3.212-.798a2 2 0 0 1 1.575.083l2.355 1.161-.163-2.878zM10.875 0h2.25C19.13 0 24 4.656 24 10.399c0 2.6-.25 4.257-1.9 6.08l.243 4.279c.072.845-.807 1.471-1.633 1.162l-3.682-1.816c-1.212.446-2.527.921-3.903.921h-2.25C4.869 21.025 0 16.142 0 10.4 0 4.656 4.869 0 10.875 0z" fill="#FFF"></path></svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>

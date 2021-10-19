@@ -1,0 +1,19 @@
+{% comment %}
+  Chat Scripts
+{% endcomment %}
+
+{% if shop.permanent_domain == 'the-hairpin-leg-co.myshopify.com' %}
+  {% render 'helpscout-beacon',
+    id: '76860ce5-47c3-4f8e-a655-a8b63261c96f',
+    secret: 'jzusDcvapNuMZpv+5sGYoJfboP5Fbtgj4OPlJ77FlS4='
+  %}
+
+{% elsif  shop.permanent_domain == 'the-hairpin-leg-co-trade.myshopify.com' %}
+  {% render 'helpscout-beacon',
+    id: '627fae4b-d31d-4fb8-a9e8-8348ea471059',
+    secret: 'zYarnJ8Ztn3PN47627mMi2NmVxoyP5QBTAhl1CReFDU='
+  %}
+
+{% else %}
+
+{% endif %}
