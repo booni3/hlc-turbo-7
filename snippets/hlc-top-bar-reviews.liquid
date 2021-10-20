@@ -4,10 +4,11 @@ Efficient Reviews Bar
 - If the expiry date in the meta has passed, we will call our own sever.
 - Our server will in turn connect with the reviews platform, gateher the data, save it to shopify meta & return.
 - We are currently using a private app to update the shopify meta
+- app/stock-info is an app proxy, managed through https://partners.shopify.com/ (adam@profilestudio.com). This simply hides our URL
 {% endcomment %}
 
 {% assign now_date = 'now' | date: '%s' %}
-{% assign expiry_date = shop.metafields.hlc.company_reviews.value.expiry  | date: '%s' %}
+{% assign expiry_date = shop.metafields.hlc.company_reviews.value.expiry | date: '%s' %}
 {% assign fetch_new_reviews = true %}
 {% if expiry_date and now_date < expiry_date %}
   {% assign fetch_new_reviews = false %}
@@ -24,7 +25,7 @@ Efficient Reviews Bar
       }"
      x-init="
         {% if fetch_new_reviews %}
-           fetch('https://app.profilestudio.xyz/shopify/stock/proxy/reviews?shop={{ shop.permanent_domain }}')
+           fetch('/apps/stock-info/reviews?shop={{ shop.permanent_domain }}')
               .then(res => res.json())
               .then(data => {
                   if(data.rating){
