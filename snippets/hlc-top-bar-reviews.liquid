@@ -1,13 +1,29 @@
-<div x-data="{ count: 0, rating: 0, text: ''}"
+{% assign now_date = 'now' | date: '%s' %}
+{% assign expiry_date = shop.metafields.hlc.company_reviews.value.expiry  | date: '%s' %}
+{% assign fetch_new_reviews = true %}
+{% if expiry_date and now_date < expiry_date %}
+  {% assign fetch_new_reviews = false %}
+{% endif %}
+
+<div x-data="{
+        rating: {{ shop.metafields.hlc.company_reviews.value.rating }},
+        count: {{ shop.metafields.hlc.company_reviews.value.count }},
+        text: '{{ shop.metafields.hlc.company_reviews.value.rating }} ({{ shop.metafields.hlc.company_reviews.value.count }})',
+        setText(rating, count) {
+          this.text = rating + ' (' + count + ')';
+          this.$dispatch('reviews-text', this.text);
+        },
+      }"
      x-init="
-        fetch('https://app.profilestudio.xyz/shopify/stock/proxy/reviews')
-          .then(res => res.json())
-          .then(data => {
-              if(data.rating){
-                text = (Math.round(data.rating * 10) / 10) + ' (' + data.count + ')';
-                $dispatch('reviews-text', text);
-              }
-          });
+        {% if fetch_new_reviews %}
+           fetch('https://app.profilestudio.xyz/shopify/stock/proxy/reviews')
+              .then(res => res.json())
+              .then(data => {
+                  if(data.rating){
+                    setText(Math.round(data.rating * 10) / 10, data.count);
+                  }
+            });
+        {% endif %}
      "
      x-on:click="window.location='/pages/customer-reviews'"
      class="top-bar-review"
@@ -23,5 +39,7 @@
     {% include 'star-svg' %}
     {% include 'star-svg' %}
   </div>
-  <div x-text="text"></div>
+  <div x-text="text">
+    {{ shop.metafields.hlc.company_reviews.value.rating }} ({{ shop.metafields.hlc.company_reviews.value.count }})
+  </div>
 </div>
