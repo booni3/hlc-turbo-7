@@ -1,0 +1,85 @@
+{% comment %}
+Efficient Product Reviews
+- We use the prpduct metafields to store the reviews data in a JSON format.
+- If the expiry date in the meta has passed, we will call our own sever.
+- Our server will in turn connect with the reviews platform, gateher the data, save it to shopify meta & return.
+- We are currently using a private app to update the shopify meta
+- app/stock-info is an app proxy, managed through https://partners.shopify.com/ (adam@profilestudio.com). This simply hides our URL
+{% endcomment %}
+
+{% if reviewSkus %}
+  {% assign pageSkus = product.variants | map: 'sku' | join: ';' %}
+  {% assign reviewSkus = reviewSkus | append: ';' | append: pageSkus %}
+{% else %}
+  {% assign reviewSkus = product.variants | map: 'sku' | join: ';' %}
+{% endif %}
+
+{% assign now_date = 'now' | date: '%s' %}
+{% assign expiry_date = product.metafields.hlc.reviews['expiry1'] | date: '%s' %}
+{% assign fetch_new_reviews = true %}
+{% if expiry_date and now_date < expiry_date %}
+  {% assign fetch_new_reviews = false %}
+{% endif %}
+
+<div x-data="{
+        rating: {{ product.metafields.hlc.reviews['rating'] | default: 0 }},
+        count: {{ product.metafields.hlc.reviews['count'] | default: 0 }},
+        text: '{{ product.metafields.hlc.reviews['count'] | default: 0 }} reviews',
+        setText(count, rating) {
+          this.rating = rating;
+          this.count = count;
+          this.text = count + ' reviews';
+          this.$dispatch('reviews-text', this.text);
+        },
+      }"
+     x-init="
+        {% if fetch_new_reviews %}
+           data = new FormData();
+           data.append('sku', '{{ reviewSkus }}');
+           data.append('shop', '{{ shop.permanent_domain }}');
+           data.append('productId', '{{ product.id }}');
+
+           fetch('/apps/stock-info/trustpilot-product-reviews', {
+              method: 'POST',
+              body: data
+           })
+              .then(res => res.json())
+              .then(data => {
+                  console.log(data);
+                  if(data.rating){
+                    setText(data.count, data.rating);
+                  }
+            });
+        {% endif %}
+     "
+     x-on:click="window.location='/pages/customer-reviews'"
+     x-show="count>0"
+     class="top-bar-review"
+     style="cursor: pointer;"
+>
+  <style>
+    .trust-stars svg {
+      height: 18px;
+    }
+    [x-cloak] { display: none !important; }
+  </style>
+  <div class="trust-stars" style="padding-left: 0; margin-top: 4px;" x-cloak>
+    <span x-show="rating>=0&&rating<1.5">
+      <svg viewBox="0 0 512 96" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#FF3722" d="M0 0h96v96H0z"/><path fill="#DCDCE6" d="M104 0h96v96h-96zM208 0h96v96h-96zM312 0h96v96h-96zM416 0h96v96h-96z"/><path d="M48 64.7 62.6 61l6.1 18.8L48 64.7Zm33.6-24.3H55.9L48 16.2l-7.9 24.2H14.4l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM152 64.7l14.6-3.7 6.1 18.8L152 64.7Zm33.6-24.3h-25.7L152 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM256 64.7l14.6-3.7 6.1 18.8L256 64.7Zm33.6-24.3h-25.7L256 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM360 64.7l14.6-3.7 6.1 18.8L360 64.7Zm33.6-24.3h-25.7L360 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM464 64.7l14.6-3.7 6.1 18.8L464 64.7Zm33.6-24.3h-25.7L464 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15Z" fill="#FFF"/></g></svg>
+    </span>
+    <span x-show="rating>1.5&&rating<2.5">
+      <svg viewBox="0 0 512 96" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#FF8622" d="M0 0h96v96H0zM104 0h96v96h-96z"/><path fill="#DCDCE6" d="M208 0h96v96h-96zM312 0h96v96h-96zM416 0h96v96h-96z"/><path d="M48 64.7 62.6 61l6.1 18.8L48 64.7Zm33.6-24.3H55.9L48 16.2l-7.9 24.2H14.4l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM152 64.7l14.6-3.7 6.1 18.8L152 64.7Zm33.6-24.3h-25.7L152 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM256 64.7l14.6-3.7 6.1 18.8L256 64.7Zm33.6-24.3h-25.7L256 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM360 64.7l14.6-3.7 6.1 18.8L360 64.7Zm33.6-24.3h-25.7L360 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM464 64.7l14.6-3.7 6.1 18.8L464 64.7Zm33.6-24.3h-25.7L464 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15Z" fill="#FFF"/></g></svg>
+    </span>
+    <span x-show="rating>2.5&&rating<3.5">
+      <svg viewBox="0 0 512 96" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#FFCE00" d="M0 0h96v96H0zM104 0h96v96h-96zM208 0h96v96h-96z"/><path fill="#DCDCE6" d="M312 0h96v96h-96zM416 0h96v96h-96z"/><path d="M48 64.7 62.6 61l6.1 18.8L48 64.7Zm33.6-24.3H55.9L48 16.2l-7.9 24.2H14.4l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM152 64.7l14.6-3.7 6.1 18.8L152 64.7Zm33.6-24.3h-25.7L152 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM256 64.7l14.6-3.7 6.1 18.8L256 64.7Zm33.6-24.3h-25.7L256 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM360 64.7l14.6-3.7 6.1 18.8L360 64.7Zm33.6-24.3h-25.7L360 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM464 64.7l14.6-3.7 6.1 18.8L464 64.7Zm33.6-24.3h-25.7L464 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15Z" fill="#FFF"/></g></svg>    </span>
+    <span x-show="rating>3.5&&rating<4.5">
+      <svg viewBox="0 0 512 96" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#00B67A" d="M0 0h96v96H0zM104 0h96v96h-96zM208 0h96v96h-96zM312 0h96v96h-96zM416 0h96v96h-96z"/><path d="M48 64.7 62.6 61l6.1 18.8L48 64.7Zm33.6-24.3H55.9L48 16.2l-7.9 24.2H14.4l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM152 64.7l14.6-3.7 6.1 18.8L152 64.7Zm33.6-24.3h-25.7L152 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM256 64.7l14.6-3.7 6.1 18.8L256 64.7Zm33.6-24.3h-25.7L256 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM360 64.7l14.6-3.7 6.1 18.8L360 64.7Zm33.6-24.3h-25.7L360 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM464 64.7l14.6-3.7 6.1 18.8L464 64.7Zm33.6-24.3h-25.7L464 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15Z" fill="#FFF"/></g></svg>
+    </span>
+    <span x-show="rating>=4.5">
+      <svg viewBox="0 0 512 96" xmlns="http://www.w3.org/2000/svg"><g fill-rule="nonzero" fill="none"><path fill="#00B67A" d="M0 0h96v96H0zM104 0h96v96h-96zM208 0h96v96h-96zM312 0h96v96h-96zM416 0h96v96h-96z"/><path d="M48 64.7 62.6 61l6.1 18.8L48 64.7Zm33.6-24.3H55.9L48 16.2l-7.9 24.2H14.4l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM152 64.7l14.6-3.7 6.1 18.8L152 64.7Zm33.6-24.3h-25.7L152 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM256 64.7l14.6-3.7 6.1 18.8L256 64.7Zm33.6-24.3h-25.7L256 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM360 64.7l14.6-3.7 6.1 18.8L360 64.7Zm33.6-24.3h-25.7L360 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15ZM464 64.7l14.6-3.7 6.1 18.8L464 64.7Zm33.6-24.3h-25.7L464 16.2l-7.9 24.2h-25.7l20.8 15-7.9 24.2 20.8-15 12.8-9.2 20.7-15Z" fill="#FFF"/></g></svg>
+    </span>
+  </div>
+  <div x-text="text" style="color: black; padding-left: 6px;letter-spacing: 0px;">
+    {{ product.metafields.hlc.reviews['count'] }} reviews
+  </div>
+</div>
