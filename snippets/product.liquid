@@ -53,6 +53,8 @@
 
 {% comment %} HTML markup {% endcomment %}
 
+{% assign hlcMeta = product.metafields.hlc %}
+
 {% if product != blank and context == 'product' %}
   {%
     render 'product__structured-data',
@@ -182,6 +184,14 @@
                   </a>
                 </h2>
               {% endif %}
+
+              {% comment %} HLC REVIEWS {% endcomment %}
+              {% render 'hlc-product-reviews',
+                      product: product,
+                      reviewSkus: hlcMeta['review_skus'],
+                      variant: variant
+              %}
+
               {% if enable_shopify_review_comments and settings.enable_shopify_product_badges %}
                 <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
               {% endif %}

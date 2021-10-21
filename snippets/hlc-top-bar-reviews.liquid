@@ -15,8 +15,8 @@ Efficient Reviews Bar
 {% endif %}
 
 <div x-data="{
-        rating: {{ shop.metafields.hlc.company_reviews.value.rating }},
-        count: {{ shop.metafields.hlc.company_reviews.value.count }},
+        rating: '{{ shop.metafields.hlc.company_reviews.value.rating }}',
+        count: '{{ shop.metafields.hlc.company_reviews.value.count }}',
         text: '{{ shop.metafields.hlc.company_reviews.value.rating }} ({{ shop.metafields.hlc.company_reviews.value.count }})',
         setText(rating, count) {
           this.text = rating + ' (' + count + ')';
