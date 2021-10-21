@@ -186,7 +186,7 @@
               {% endif %}
 
               {% comment %} HLC REVIEWS {% endcomment %}
-              {% render 'hlc-product-reviews',
+              {% render 'hlc-product-review-stars',
                       product: product,
                       reviewSkus: hlcMeta['review_skus'],
                       variant: variant
@@ -493,3 +493,4 @@
   <script defer src="https://cdn.shopify.com/shopifycloud/shopify-xr-js/assets/v1.0/shopify-xr.en.js"></script>
   <script defer src="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.en.js"></script>
 {% endif %}
+

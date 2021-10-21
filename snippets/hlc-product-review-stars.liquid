@@ -1,0 +1,69 @@
+{% comment %}
+Efficient Product Reviews
+- We use the prpduct metafields to store the reviews data in a JSON format.
+- If the expiry date in the meta has passed, we will call our own sever.
+- Our server will in turn connect with the reviews platform, gateher the data, save it to shopify meta & return.
+- We are currently using a private app to update the shopify meta
+- app/stock-info is an app proxy, managed through https://partners.shopify.com/ (adam@profilestudio.com). This simply hides our URL
+{% endcomment %}
+
+{% if reviewSkus %}
+  {% assign pageSkus = product.variants | map: 'sku' | join: ';' %}
+  {% assign reviewSkus = reviewSkus | append: ';' | append: pageSkus %}
+{% else %}
+  {% assign reviewSkus = product.variants | map: 'sku' | join: ';' %}
+{% endif %}
+
+{% assign now_date = 'now' | date: '%s' %}
+{% assign expiry_date = product.metafields.hlc.reviews['expiry'] | date: '%s' %}
+{% assign fetch_new_reviews = true %}
+{% if expiry_date and now_date < expiry_date %}
+  {% assign fetch_new_reviews = false %}
+{% endif %}
+
+<div x-data="{
+        rating: {{ product.metafields.hlc.reviews['rating'] | default: 0 }},
+        count: {{ product.metafields.hlc.reviews['count'] | default: 0 }},
+        text: '{{ product.metafields.hlc.reviews['count'] | default: 0 }} reviews',
+        setText(count, rating) {
+          this.rating = rating;
+          this.count = count;
+          this.text = count + ' reviews';
+          this.$dispatch('reviews-text', this.text);
+        },
+      }"
+     x-init="
+        {% if fetch_new_reviews %}
+           data = new FormData();
+           data.append('sku', '{{ reviewSkus }}');
+           data.append('shop', '{{ shop.permanent_domain }}');
+           data.append('productId', '{{ product.id }}');
+
+           fetch('/apps/stock-info/product-reviews', {
+              method: 'POST',
+              body: data
+           })
+              .then(res => res.json())
+              .then(data => {
+                  if(data.rating){
+                    setText(data.count, data.rating);
+                  }
+            });
+        {% endif %}
+     "
+     x-on:click="window.location='/pages/customer-reviews'"
+     x-show="count>0"
+     class="top-bar-review"
+     style="cursor: pointer;"
+>
+  <div class="stars" style="padding-left: 0;">
+    <span x-show="rating>=0">{% render 'star-svg' %}</span>
+    <span x-show="rating>=1">{% render 'star-svg' %}</span>
+    <span x-show="rating>=2">{% render 'star-svg' %}</span>
+    <span x-show="rating>=3">{% render 'star-svg' %}</span>
+    <span x-show="rating>=4">{% render 'star-svg' %}</span>
+  </div>
+  <div x-text="text" style="color: black;">
+    {{ product.metafields.hlc.reviews['count'] }} reviews
+  </div>
+</div>
