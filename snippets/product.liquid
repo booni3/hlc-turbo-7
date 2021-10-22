@@ -221,7 +221,7 @@
                         </style>
                       </noscript>
                       {% assign compare_at_price = false %}
-                    
+
                       {% if product.compare_at_price and product.compare_at_price != product.price %}
                         {% if product.compare_at_price_varies %}
                           {%- capture price_min -%}
@@ -231,7 +231,7 @@
                               value: product.compare_at_price_min,
                             -%}
                           {%- endcapture -%}
-                    
+
                           {%- capture price_max -%}
                             {%-
                               render 'price-ui-templates',
@@ -239,7 +239,7 @@
                               value: product.compare_at_price_max,
                             -%}
                           {%- endcapture -%}
-                    
+
                           {%- assign compare_at_price = 'product.price.range_html' | t: price_min: price_min, price_max: price_max -%}
                         {% else %}
                           {%- capture compare_at_price -%}
@@ -251,7 +251,7 @@
                           {%- endcapture -%}
                         {% endif %}
                       {% endif %}
-                    
+
                       {% if product.price_varies %}
                         {%- capture price_min -%}
                           {%-
@@ -260,7 +260,7 @@
                             value: product.price_min,
                           -%}
                         {%- endcapture -%}
-                    
+
                         {%- capture price_max -%}
                           {%-
                             render 'price-ui-templates',
@@ -268,7 +268,7 @@
                             value: product.price_max,
                           -%}
                         {%- endcapture -%}
-                    
+
                         {%- assign price = 'product.price.range_html' | t: price_min: price_min, price_max: price_max -%}
                       {% else %}
                         {%- capture price -%}
@@ -279,7 +279,7 @@
                           -%}
                         {%- endcapture -%}
                       {% endif %}
-                    
+
                       {%-
                         render 'price-ui-templates',
                         template: 'price-ui',
@@ -466,6 +466,87 @@
       {% endif %}
     </div>
   </div>
+
+    {% comment %}Description{% endcomment %}
+    {% if product.metafields.hlc['description_below_text'] or true %}
+        <div class="shopify-section shopify-section--rich-text-and-image">
+            <section class="section ">
+                <div class="container">
+                    <div class="one-whole column">
+                        <div class="rich-text__content center">
+                            <h2 class="rich-text__heading title">Description</h2>
+                            <div class="feature_divider"></div>
+                            <div class="rich-text__text featured_text">
+                                <p>Designed specifically for DIYers, makers, and professionals, these hairpin legs will add both stability and mid-century modern style to any and all furniture projects. Complete with free screws, protector feet and build guide.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        {% comment %}HLC - dynamic loading description{% endcomment %}
+        {% if product.metafields.hlc['dynamic_description_url'] or true %}
+            <section>
+                <div x-data="{
+                        html: '',
+                        loaded: false,
+                        loading: false,
+                        fetchPartial() {
+                            this.loading = true;
+                            axios.get('/pages/60-day-satisfaction-guarantee').then(res => {
+                            var parser = new DOMParser();
+                            var doc = parser.parseFromString(res.data, 'text/html');
+                            this.html = doc.getElementById('hlc-page-no-title').innerHTML;
+                            this.loaded = true;
+                            this.loading = false;
+                            });
+                        }
+                    }">
+                    <div class="center">
+                        <button class="global-button global-button--text" x-on:click="fetchPartial()" x-show="! loaded" style="min-width: 250px">
+                        {% comment %}<button class="global-button button-link global-button--banner-text" x-on:click="fetchPartial()" x-show="! loaded" style="min-width: 200px">{% endcomment %}
+                            <span x-show="loading" class="gg-spinner"></span>
+                            <span x-show="! loading">Read More...</span>
+                        </button>
+                        <button class="global-button button-link global-button--banner-text" x-on:click="loaded=false" x-show="loaded" style="margin-bottom: 20px;">Hide Description</button>
+                    </div>
+                    <div x-html="html" x-show="loaded"></div>
+                </div>
+            </section>
+        {% endif %}
+    </div>
+
+    {% comment %}HLC - User Generated Content{% endcomment %}
+    <div x-data='{
+            script: null,
+            loaded: false,
+            load() {
+                if(this.loaded === false){
+                    this.loaded = true;
+                    myScript = document.createElement("script");
+                    myScript.setAttribute("src", "https://snapppt.com/widgets/ppg/d137c784-567a-42c2-a7ef-57cb7c8666d2");
+                    myScript.setAttribute("class", "snapppt-widget");
+                    this.script = myScript;
+                    document.getElementById("hlc-snpppt-widget").appendChild(this.script);
+                }
+            }
+        }'
+         x-init="window.scrollY!=0 ? load : null"
+         x-on:scroll.window='window.scrollY!=0 ? load : null'
+    >
+        <div id="hlc-snpppt-widget" class='snpt-wdgt--ppg'></div>
+    </div>
+
+    {% comment %}HLC Product Reviews{% endcomment %}
+    <div class="hlc-product-reviews" style="overflow: hidden;">
+        {% render 'hlc-product-reviews',
+                product: product,
+                reviewSkus: product.metafields.hlc['review_skus'],
+                variant: variant
+        %}
+    </div>
+
   {% if enable_shopify_review_comments
     and context == 'product'
     and settings.shopify_review_position == 'below'

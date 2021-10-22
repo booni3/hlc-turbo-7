@@ -68,16 +68,8 @@
         enable_shopify_review_comments: settings.enable_shopify_review_comments
       %}
 
-      {% comment %}HLC Product Reviews{% endcomment %}
-      <div class="hlc-product-reviews" style="overflow: hidden;">
-        {% render 'hlc-product-reviews',
-                product: product,
-                reviewSkus: product.metafields.hlc['review_skus'],
-                variant: variant
-        %}
-      </div>
-
     </section>
+
   </div>
 </section>
 
