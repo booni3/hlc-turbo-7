@@ -26,13 +26,6 @@
   width: 18%
 }
 
-//@media only screen and (max-width: 798px) and (max-width: 798px) {
-//  .promo-banner--show.mobile_nav-fixed--false #pagecontent,
-//  .promo-banner--show.mobile_nav-fixed--true #pagecontent
-//  {
-//    padding-bottom: 85px
-//  }
-//}
 
 @media only screen and (max-width: 798px) {
   .top-bar,
@@ -50,18 +43,6 @@
   .cart_content {
     top: 55px
   }
-
-  //.promo_banner-show.mobile_nav-fixed--false #pagecontent, .promo_banner-show.mobile_nav-fixed--true #pagecontent {
-  //  padding-bottom: 85px
-  //}
-
-  //.mobile_nav-fixed--false .page_banner, .mobile_nav-fixed--true .page_banner {
-  //  margin-top: 55px
-  //}
-  //
-  //.promo-banner--show.mobile_nav-fixed--false .page-banner, .promo-banner--show.mobile_nav-fixed--true .page-banner {
-  //  margin-top: 85px
-  //}
 
   #header .mobile_nav.dropdown_link span.menu_title {
     display: none
@@ -95,15 +76,17 @@
   display: none !important
 }
 
+
+// Promo Banner
 .promo-banner .promo-banner__content {
-  font-size: 1.15em;
-  letter-spacing: 4px
+  font-size: 15px;
+  letter-spacing: 3px
 }
 
 @media only screen and (max-width: 798px) {
   .promo-banner .promo-banner__content {
-    font-size: 13px;
-    letter-spacing: 3px
+    font-size: 15px;
+    letter-spacing: 2px
   }
 
   .promo-banner__content-desktop {

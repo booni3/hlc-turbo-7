@@ -1,3 +1,29 @@
+{% if customer %}
+    {% assign customer_email = customer.email %}
+{% endif %}
+
+<div x-data="notifyForm('{{ customer_email }}')"
+     x-on:hlc-variant-selected.window="variantId=$event.detail.variant.id"
+     class="notify_form notify-form-{{ product.id }}" {% if product.available %}style="display:none"{% endif %}>
+    <p>
+    <div>
+        {% unless customer %}
+            <input x-show="success==false" x-model="email" required type="email" class="notify_email" placeholder="{{ 'products.notify_form.email' | t }}" value="{{ contact.fields.email }}"/>
+        {% endunless %}
+
+        <button x-on:click="submit" class="global-button global-button--primary notify_me_button" style="margin-bottom:0" x-bind:disabled="loading || success">
+            <span x-show.transition="success===true" style="font-size: 0.9em">{{ 'products.notify_form.post_success' | t }}</span>
+            <span x-show="success===false&&loading==false">{{ 'products.notify_form.send' | t }}</span>
+            <div x-show="success===false&&loading==true" class="gg-spinner" style="margin: 0 auto"></div>
+        </button>
+
+        <p x-show.transition="error" class="error-text"><em x-text="error"></em></p>
+    </div>
+    </p>
+</div>
+
+
+{% comment %}
 {% if settings.notify_me_form %}
   <div class="notify_form notify-form-{{ product.id }}" id="notify-form-{{ product.id }}" {% if product.available %}style="display:none"{% endif %}>
     <p class="message"></p>
@@ -25,3 +51,4 @@
     {% endform %}
   </div>
 {% endif %}
+{% endcomment %}

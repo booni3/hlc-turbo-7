@@ -63,7 +63,9 @@
   {% if section.settings.promo_text != blank %}
     <div class="promo-banner">
       <div class="promo-banner__content">
-        {{ section.settings.promo_text }}
+        {% comment %}HLC - HEADER CONTENT MOBILE{% endcomment %}
+        FREE 🚚 OVER £50 & FREE RETURNS! 🚀
+        {% comment %}{{ section.settings.promo_text }}{% endcomment %}
       </div>
       <div class="promo-banner__close"></div>
     </div>
@@ -124,19 +126,23 @@
   <div class="dropdown_container" data-dropdown="mobile_menu">
     <div class="dropdown">
       <ul class="menu" id="mobile_menu">
+        {% comment %} HLC - remove primary menu from mobile
         {%
           render 'mobile-menu',
           menu: section.settings.main_linklist
         %}
+        {% endcomment %}
         {%
           render 'mobile-menu',
           menu: section.settings.main_linklist2
         %}
+        {% comment %} HLC - remove link list from mobile
         {%
           render 'mobile-menu',
           menu: section.settings.top_bar_menu,
           context: 'top_bar_menu'
         %}
+        {% endcomment %}
 
         {% if section.settings.phone_number != blank %}
           <li>
@@ -221,7 +227,9 @@
     {% if section.settings.promo_text != blank %}
       <div class="promo-banner">
         <div class="promo-banner__content">
-          {{ section.settings.promo_text }}
+          {% comment %}HLC - HEADER CONTENT{% endcomment %}
+          🚚 FREE DELIVERY ON ORDERS OVER £50 🚀 FREE 60 DAY RETURNS!
+          {% comment %}{{ section.settings.promo_text }}{% endcomment %}
         </div>
         <div class="promo-banner__close"></div>
       </div>

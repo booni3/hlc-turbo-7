@@ -53,12 +53,9 @@
     <!-- Stylesheet for Fancybox library -->
     {{ 'fancybox.css' | asset_url | stylesheet_tag }}
 
-    <!-- Stylesheets for Turbo -->
+    <!-- Stylesheets -->
     {{ 'styles.css' | asset_url | stylesheet_tag }}
-
-    <!-- HLC Custom -->
     {{ 'hlc-main.min.css' | asset_url | stylesheet_tag }}
-    <script defer src="{{ 'hlc-main.min.js' | asset_url }}"></script>
 
     <script>
       window.lazySizesConfig = window.lazySizesConfig || {};
@@ -137,15 +134,19 @@
     <template id="price-ui-badge__in-stock">{{- 'product.badge.in_stock' | t -}}</template>
     {% comment %}Inject @pixelunion/shopify-price-ui/price-ui-globals end{% endcomment %}
 
-
     <script>
       {% render 'js-variables' %}
+      {% render 'hlc-js-variables' %}
     </script>
 
     <script src="{{ 'vendors.js' | asset_url }}" defer></script>
     <script src="{{ 'sections.js' | asset_url }}" defer></script>
+    <script src="{{ 'hlc-sections.min.js' | asset_url }}" defer></script>
     <script src="{{ 'utilities.js' | asset_url }}" defer></script>
     <script src="{{ 'app.js' | asset_url }}" defer></script>
+    <!-- custom scripts -->
+    <script src="{{ 'hlc-main.min.js' | asset_url }}" defer></script>
+    {% if request.page_type == 'product' %}<script src="{{ 'hlc-product.min.js' | asset_url }}"></script>{% endif %}
 
     {% if settings.disqus_enabled %}
       {% if template contains "blog" or template contains "article" or template contains "index" %}

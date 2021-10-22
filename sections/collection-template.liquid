@@ -186,6 +186,14 @@
         {% if description_top %}
           <div class="container">
             <div class="one-whole column">
+
+              {% comment %}HLC add mobile only description text{% endcomment %}
+              {% if banner_subheading %}
+                <div class="section clearfix mobile-only banner_subheading collection_description" style="text-align: center">
+                  {{ banner_subheading }}
+                </div>
+              {% endif %}
+
               <div class="collection_description">
                 {{ description_top }}
               </div>

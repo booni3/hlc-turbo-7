@@ -1,0 +1,3 @@
+{% comment %} Customer {% endcomment %}
+window.customerCanBackorder = {% if customer.tags contains 'backorder' %}true{% else %}false{% endif %};
+window.vatExclusivePrice = {% if customer.tags contains 'excVAT' %}true{% else %}false{% endif %};

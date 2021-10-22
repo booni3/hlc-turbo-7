@@ -4,7 +4,7 @@
 }
 
 // Desktop Only
-@media only screen and (min-width: 479px) {
+@media only screen and (min-width: 798px) {
   .banner.page-banner {
     max-height: 450px;
   }
@@ -15,7 +15,7 @@
   }
 
   .banner .caption-content {
-    padding-top: 80px;
+    padding-top: 90px;
     max-width: 80%;
   }
 }
@@ -27,11 +27,6 @@
   text-transform: none;
   font-size: 20px;
   line-height: 30px;
-}
-
-.mobile-only.collection_header_description {
-  display: none;
-  padding-bottom: 30px;
 }
 
 .index .banner .headline,

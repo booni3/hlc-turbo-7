@@ -54,6 +54,10 @@
   "dependencies": {
     "@alpinejs/persist": "^3.4.2",
     "alpinejs": "^3.4.2",
-    "cypress-intellij-reporter": "0.0.4"
+    "cypress-intellij-reporter": "0.0.4",
+    "install": "^0.13.0",
+    "luxon": "^2.0.2",
+    "moment-business-days": "^1.2.0",
+    "npm": "^8.1.1"
   }
 }

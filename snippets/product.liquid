@@ -186,11 +186,13 @@
               {% endif %}
 
               {% comment %} HLC REVIEWS {% endcomment %}
-              {% render 'hlc-product-review-stars',
-                      product: product,
-                      reviewSkus: hlcMeta['review_skus'],
-                      variant: variant
-              %}
+              {% if context == 'product' %}
+                  {% render 'hlc-product-review-stars',
+                          product: product,
+                          reviewSkus: hlcMeta['review_skus'],
+                          variant: variant
+                  %}
+              {% endif %}
 
               {% if enable_shopify_review_comments and settings.enable_shopify_product_badges %}
                 <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
@@ -292,6 +294,16 @@
                   </div>
                 {% endif %}
               {% endif %}
+
+
+              {% comment %}HLC - Exra info{% endcomment %}
+            {% if context == 'product' %}
+                  {% if hlcMeta['price_info'] %}
+                      <div class="price_info">{{ hlcMeta['price_info'] }}</div>
+                  {% endif %}
+                  {% render 'hlc-product-delivery-counter' %}
+              {% endif %}
+
             {% when 'description' %}
               <div class="description">
                 {% if onboarding %}

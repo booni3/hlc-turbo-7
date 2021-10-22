@@ -716,6 +716,13 @@ $(() => {
     };
     // Disable button after click to prevent multiple clicks
     $(this).parents('.product-quantity-box').find('.js-change-quantity').addClass('is-disabled');
+
+    // HLC - check oversells
+    var inventoryQuantity = $(this).parents('[data-cart-item]').data('inventory-quantity');
+    if(inventoryQuantity && ! window.customerCanBackorder && inventoryQuantity < cartItem.quantity){
+      cartItem.quantity = inventoryQuantity;
+    }
+
     updateCartItemQuantity(cartItem);
   });
 

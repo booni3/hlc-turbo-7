@@ -17,3 +17,17 @@
 .collection_detail_divider {
   margin-top: 30px
 }
+
+// Subtitle
+@media only screen and (max-width: 798px) {
+  .collection .banner .subtitle {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 798px) {
+  .collection .banner_subheading.collection_description {
+    display: none !important;
+    padding-bottom: 30px;
+  }
+}

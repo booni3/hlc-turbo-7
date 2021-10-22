@@ -1,0 +1,35 @@
+{% if product.tags contains 'made-to-order' %}
+  {% assign free_delivery_text = 'This item is made to order' %}
+  {% assign free_delivery_subtitle = 'Usually delivered in 4 - 6 weeks.' %}
+{% elsif product.tags contains 'del-2wk' %}
+  {% assign free_delivery_text = 'In Stock' %}
+  {% assign free_delivery_subtitle = 'Delivery in under 2 weeks' %}
+{% elsif product.tags contains 'del-1wk' %}
+  {% assign free_delivery_text = 'In Stock' %}
+  {% assign free_delivery_subtitle = 'Free Delivery in less 1 - 7 Days' %}
+{% elsif product.tags contains 'slow-delivery' %}
+  {% assign free_delivery_text = 'In Stock' %}
+  {% assign free_delivery_subtitle = 'Usually delivered in 1 - 2 weeks.' %}
+{% else %}
+  {% assign free_delivery_text = 'Free UK Delivery Over £50. Free Returns.' %}
+  {% assign free_delivery_subtitle = '' %}
+{% endif %}
+
+<div class="delivery-counter">
+  <div class="free_delivery_text">{{ free_delivery_text }}</div>
+
+  {% if free_delivery_subtitle %}
+    <div class="free_delivery_subtitle">{{ free_delivery_subtitle }}</div>
+  {% endif %}
+
+  {% comment %}<div x-data="productCounter()" init="console.log(moment().now().next().monday())"class="order_before_text">{% endcomment %}
+  {% comment %}<div x-data="productCounter()" x-init="console.log('HLC:' + moment().startOf('isoWeek').add(1, 'week').format('Do MMMM'))" class="order_before_text">{% endcomment %}
+  {% comment %}<div x-data="productCounter()" x-init="console.log('HLC:' + moment().add(1, 'days').format())" class="order_before_text">{% endcomment %}
+  {% comment %}<div x-data="productCounter()" x-init="console.log('HLC:' + moment('16:00', 'HH:mm').add(1, 'days').format())" class="order_before_text">{% endcomment %}
+  {% comment %}<div x-data="productCounter()" x-init="console.log(moment.duration( moment('16:00','HH:mm').diff(moment()) ).humanize(true))"  class="order_before_text">{% endcomment %}
+  <div x-data="productCounter()"  class="order_before_text">
+    Order in the next <span x-text="hoursUntilCutOff"></span> for delivery <span x-text="estimatedArrival"></span>
+  </div>
+
+  <div class="pre_order_text"></div>
+</div>

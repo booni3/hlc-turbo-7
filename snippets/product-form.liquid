@@ -94,6 +94,14 @@
   {% endif %}
 
   <div class="purchase-details">
+    {% comment %}HLC - hidden inputs to help with oversell/pre-ordering{% endcomment %}
+    <input id="hlciq" type="hidden"  value="{{ variant.inventory_quantity }}"/>
+    <input id="hlcpid" type="hidden" value="{{ product.id }}"/>
+    <input id="hlcvid" type="hidden" value="{% if variant %}{{ variant.id }}{% else %}{% endif %}"/>
+
+    {% comment %}HLC - Custom order attributes{% endcomment %}
+    <input id="preorder_date" type="hidden" name="properties[Preorder Estimate]" value>
+
     {% if settings.display_product_quantity %}
       <div class="purchase-details__quantity product-quantity-box">
         <label for="quantity">{{ 'products.product.quantity' | t }}</label>
